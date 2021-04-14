@@ -9,11 +9,14 @@ import Document, {
 import { ServerStyleSheet } from 'styled-components';
 import { ServerStyleSheets } from '@material-ui/core/styles';
 
+import theme from '../styles/materialTheme';
+
 export default class MyDocument extends Document {
   render(): JSX.Element {
     return (
       <Html lang="en">
         <Head>
+          <meta name="theme-color" content={theme.palette.primary.main} />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
@@ -52,6 +55,7 @@ export default class MyDocument extends Document {
       };
     } finally {
       sheet.seal();
+      materialSheets.seal();
     }
   }
 }
