@@ -1,12 +1,14 @@
 import Head from 'next/head';
 
+import LandingHero from '../components/LandingHero/LandingHero';
+
 export default function Home(): JSX.Element {
   return (
     <>
       <Head>
-        <title>Out wtih Gout</title>
+        <title>Out with Gout</title>
       </Head>
-      <h1>Out with Gout</h1>
+      <LandingHero />
     </>
   );
 }
