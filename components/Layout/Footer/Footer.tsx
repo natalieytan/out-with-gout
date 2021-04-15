@@ -9,7 +9,7 @@ export default function Footer(): JSX.Element {
       <FooterTitle>OUT WITH GOUT</FooterTitle>
       <FooterLinksContainer>
         {footerLinks.map((footerLink) => (
-          <Link color="secondary" href={footerLink.link}>
+          <Link color="secondary" href={footerLink.link} key={footerLink.text}>
             {footerLink.text}
           </Link>
         ))}
