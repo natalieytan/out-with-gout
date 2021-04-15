@@ -21,7 +21,7 @@ export default function UALIndicationQuestion({ yesHandler, noHandler }: Props):
     ckd: false
   });
 
-  const handleChange = (event) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIndicationsState({ ...indicationsState, [event.target.name]: event.target.checked });
   };
 
