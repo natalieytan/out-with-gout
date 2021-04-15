@@ -12,7 +12,7 @@ type Props = {
   handler: () => void;
 };
 
-export default function WhatUALTreatmentQuestion({ handler }: Props): JSX.Element {
+export default function WhichUALTreatmentQuestion({ handler }: Props): JSX.Element {
   const [value, setValue] = React.useState<string | null>(null);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

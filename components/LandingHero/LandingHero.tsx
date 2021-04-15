@@ -1,6 +1,7 @@
 import { Typography } from '@material-ui/core';
 import { Button } from '@material-ui/core';
 
+import { TREATMENT_PATH } from '../../constants/paths';
 import { ImageWrapper, ContentWrapper, ButtonWrapper } from './landingHero.style';
 
 export default function LandingHero(): JSX.Element {
@@ -20,7 +21,7 @@ export default function LandingHero(): JSX.Element {
           <Button variant="contained" color="secondary" size="large" href="#">
             I want to diagnose gout
           </Button>
-          <Button variant="contained" color="secondary" size="large" href="#">
+          <Button variant="contained" color="secondary" size="large" href={TREATMENT_PATH}>
             I want to treat gout
           </Button>
         </ButtonWrapper>
