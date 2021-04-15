@@ -21,16 +21,16 @@ export default function FaqSection(): JSX.Element {
           Frequently asked questions about gout
         </Typography>
 
-        {faqs.map((faq) => (
-          <>
+        {faqs.map((faq, i) => (
+          <div key={i}>
             <FaqTextWrapper>
               <Typography variant="h6" color="textSecondary">
                 {faq.heading}
               </Typography>
-              <p>{faq.text}</p>
+              {faq.text}
             </FaqTextWrapper>
             <Divider />
-          </>
+          </div>
         ))}
       </FaqsContentContainer>
     </Container>
