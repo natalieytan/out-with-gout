@@ -10,8 +10,7 @@ export const gtagPageView = (url: string): void => {
 export const gtagEvent = ({
   action,
   category,
-  label,
-  value
+  label
 }: {
   action: string;
   category: string;
@@ -20,7 +19,6 @@ export const gtagEvent = ({
 }): void => {
   (window as any).gtag('event', action, {
     event_category: category,
-    event_label: label,
-    value: value
+    event_label: label
   });
 };
