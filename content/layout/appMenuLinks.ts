@@ -1,6 +1,8 @@
+import { TREATMENT_PATH, HOME_PATH } from '../../constants/paths';
+
 export const appMenuLinks = [
   {
-    link: '#',
+    link: HOME_PATH,
     text: 'Home'
   },
   {
@@ -8,7 +10,7 @@ export const appMenuLinks = [
     text: 'Diagnosing gout'
   },
   {
-    link: '#',
+    link: TREATMENT_PATH,
     text: 'Treating gout'
   },
   {
