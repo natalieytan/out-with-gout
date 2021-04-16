@@ -18,11 +18,11 @@ export const appMenuLinks = [
     text: 'Patient information'
   },
   {
-    link: '#',
+    link: '/privacy',
     text: 'Privacy'
   },
   {
-    link: '#',
+    link: '/disclaimer',
     text: 'Disclaimer'
   }
 ];

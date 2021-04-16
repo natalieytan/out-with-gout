@@ -12,11 +12,11 @@ export const footerLinks = [
     text: 'More Resources'
   },
   {
-    link: '#',
+    link: '/disclaimer',
     text: 'Disclaimer'
   },
   {
-    link: '#',
+    link: '/privacy',
     text: 'Privacy'
   }
 ];
