@@ -1,6 +1,7 @@
 import React from 'react';
 
 import TreatmentQuestions from './TreatmentQuestions';
+import HeaderContrast from '../../componentsTemplated/HeaderContrast/HeaderContrast';
 import { TreatmentOption } from './types';
 
 export default function TreatmentFlow(): JSX.Element {
@@ -30,8 +31,16 @@ export default function TreatmentFlow(): JSX.Element {
     case TreatmentOption.UALStartMultipleContraindication:
       return <>UAL with multi CI</>;
     case TreatmentOption.Undecided:
-      return <TreatmentQuestions setTreatment={setTreatment} />;
+      return (
+        <>
+          <HeaderContrast
+            title="Managing gout"
+            subtitle="Please answer a few questions to be able to give information directed to you"
+          />
+          <TreatmentQuestions setTreatment={setTreatment} />
+        </>
+      );
     default:
-      return <TreatmentQuestions setTreatment={setTreatment} />;
+      return <></>;
   }
 }
