@@ -1,17 +1,18 @@
-import { DISCLAIMER_PATH, PRIVACY_PATH } from '../../constants/paths';
+import {
+  CLINICIAN_RESOURCES_PATH,
+  DISCLAIMER_PATH,
+  PATIENT_INFORMATION_PATH,
+  PRIVACY_PATH
+} from '../../constants/paths';
 
 export const footerLinks = [
   {
-    link: '#',
+    link: PATIENT_INFORMATION_PATH,
     text: 'Patient information'
   },
   {
-    link: '#',
+    link: CLINICIAN_RESOURCES_PATH,
     text: 'Clinician information'
-  },
-  {
-    link: '#',
-    text: 'More Resources'
   },
   {
     link: DISCLAIMER_PATH,
