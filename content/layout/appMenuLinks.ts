@@ -1,4 +1,4 @@
-import { TREATMENT_PATH, HOME_PATH } from '../../constants/paths';
+import { TREATMENT_PATH, HOME_PATH, PRIVACY_PATH, DISCLAIMER_PATH } from '../../constants/paths';
 
 export const appMenuLinks = [
   {
@@ -18,11 +18,11 @@ export const appMenuLinks = [
     text: 'Patient information'
   },
   {
-    link: '#',
+    link: PRIVACY_PATH,
     text: 'Privacy'
   },
   {
-    link: '#',
+    link: DISCLAIMER_PATH,
     text: 'Disclaimer'
   }
 ];

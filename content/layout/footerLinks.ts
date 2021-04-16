@@ -1,3 +1,5 @@
+import { DISCLAIMER_PATH, PRIVACY_PATH } from '../../constants/paths';
+
 export const footerLinks = [
   {
     link: '#',
@@ -12,11 +14,11 @@ export const footerLinks = [
     text: 'More Resources'
   },
   {
-    link: '#',
+    link: DISCLAIMER_PATH,
     text: 'Disclaimer'
   },
   {
-    link: '#',
+    link: PRIVACY_PATH,
     text: 'Privacy'
   }
 ];

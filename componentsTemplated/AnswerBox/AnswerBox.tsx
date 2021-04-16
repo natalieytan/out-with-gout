@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { withTheme } from '@material-ui/core/styles';
 
 const ButtonWrapper = withTheme(styled.div`
-  margin: 2.5rem 0;
+  margin: 2rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
