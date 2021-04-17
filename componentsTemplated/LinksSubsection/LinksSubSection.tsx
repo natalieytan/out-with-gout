@@ -22,13 +22,15 @@ type Props = {
 
 export default function LinksSubSection({ resourceGroup }: Props): JSX.Element {
   return (
-    <LinksSubSectionWrapper key={resourceGroup.subSection}>
+    <LinksSubSectionWrapper>
       <Typography variant="h6" align="left">
         {resourceGroup.subSection}
       </Typography>
       {resourceGroup.links.map((link) => (
-        <LinkWrapper>
-          <Link href={link.url}>{link.text}</Link>
+        <LinkWrapper key={link.text}>
+          <Link href={link.url} color="textSecondary">
+            {link.text}
+          </Link>
         </LinkWrapper>
       ))}
     </LinksSubSectionWrapper>
