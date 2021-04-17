@@ -13,26 +13,33 @@ import UALPlannedQuestion from './Questions/UALPlannedQuestion';
 import WhichUALTreatmentQuestion from './Questions/WhichUALTreatmentQuestion';
 import DiganosedOrNotQuestion from './Questions/DiagnosedOrNotQuestion';
 import { TreatmentOption, TreatmentQuestion } from './types';
+import { treatmentAnswerGtagEvent } from '../../utilities/tracking/treatmentAnswer';
 
 type Props = {
   setTreatment: (treatment: TreatmentOption) => void;
 };
+
 export default function TreatmentQuestions({ setTreatment }: Props): JSX.Element {
   const [currentQuestion, setCurrentQuestion] = React.useState(TreatmentQuestion.DiganosedOrNot);
+
+  const trackAndSetQuestion = (question: TreatmentQuestion) => (eventName: string): void => {
+    treatmentAnswerGtagEvent(eventName);
+    setCurrentQuestion(question);
+  };
 
   switch (currentQuestion) {
     case TreatmentQuestion.DiganosedOrNot:
       return (
         <DiganosedOrNotQuestion
-          yesHandler={() => setCurrentQuestion(TreatmentQuestion.CurrentFlareOrNot)}
+          yesHandler={trackAndSetQuestion(TreatmentQuestion.CurrentFlareOrNot)}
           noHandler={() => setTreatment(TreatmentOption.GetDiagnosed)}
         />
       );
     case TreatmentQuestion.CurrentFlareOrNot:
       return (
         <CurrentFlareQuestion
-          yesHandler={() => setCurrentQuestion(TreatmentQuestion.NumberOfJointsAffected)}
-          noHandler={() => setCurrentQuestion(TreatmentQuestion.OnUAL)}
+          yesHandler={trackAndSetQuestion(TreatmentQuestion.NumberOfJointsAffected)}
+          noHandler={trackAndSetQuestion(TreatmentQuestion.OnUAL)}
         />
       );
     case TreatmentQuestion.NumberOfJointsAffected:
