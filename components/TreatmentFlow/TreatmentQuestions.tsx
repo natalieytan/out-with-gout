@@ -11,15 +11,23 @@ import OnUALQuestion from './Questions/OnUALQuestion';
 import UALIndicationQuestion from './Questions/UALIndicationQuestion';
 import UALPlannedQuestion from './Questions/UALPlannedQuestion';
 import WhichUALTreatmentQuestion from './Questions/WhichUALTreatmentQuestion';
+import DiganosedOrNotQuestion from './Questions/DiagnosedOrNotQuestion';
 import { TreatmentOption, TreatmentQuestion } from './types';
 
 type Props = {
   setTreatment: (treatment: TreatmentOption) => void;
 };
 export default function TreatmentQuestions({ setTreatment }: Props): JSX.Element {
-  const [currentQuestion, setCurrentQuestion] = React.useState(TreatmentQuestion.CurrentFlareOrNot);
+  const [currentQuestion, setCurrentQuestion] = React.useState(TreatmentQuestion.DiganosedOrNot);
 
   switch (currentQuestion) {
+    case TreatmentQuestion.DiganosedOrNot:
+      return (
+        <DiganosedOrNotQuestion
+          yesHandler={() => setCurrentQuestion(TreatmentQuestion.CurrentFlareOrNot)}
+          noHandler={() => setTreatment(TreatmentOption.GetDiagnosed)}
+        />
+      );
     case TreatmentQuestion.CurrentFlareOrNot:
       return (
         <CurrentFlareQuestion

@@ -1,5 +1,6 @@
 export enum TreatmentOption {
   Undecided,
+  GetDiagnosed,
   FlarePrednisolone,
   FlareColchicine,
   FlareInjection,
@@ -14,6 +15,7 @@ export enum TreatmentOption {
 }
 
 export enum TreatmentQuestion {
+  DiganosedOrNot,
   CurrentFlareOrNot,
   NumberOfJointsAffected,
   IsInjectionPreferred,

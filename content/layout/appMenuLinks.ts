@@ -12,12 +12,8 @@ export const appMenuLinks = [
     text: 'Home'
   },
   {
-    link: '#',
-    text: 'Diagnosing gout'
-  },
-  {
     link: TREATMENT_PATH,
-    text: 'Treating gout'
+    text: 'Managing gout'
   },
   {
     link: PATIENT_INFORMATION_PATH,
