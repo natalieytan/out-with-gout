@@ -1,19 +1,19 @@
 import React from 'react';
 
-import CurrentFlareQuestion from './Questions/CurrentFlareQuestion';
-import JointsAffectedQuestion from './Questions/JointsAffectedQuestion';
-import InjectionPreferredQuestion from './Questions/InjectionPreferredQuestion';
-import RenalImpairmentQuestion from './Questions/RenalImpairmentQuestion';
-import ColchicineIntoleranceQuestion from './Questions/ColchicineIntoleranceQuestion';
-import NSAIDIntoleranceQuestion from './Questions/NSAIDIntoleranceQuestion';
-import PrednisoloneIntoleranceQuestion from './Questions/PrednisoloneIntoleranceQuestion';
-import OnUALQuestion from './Questions/OnUALQuestion';
 import UALIndicationQuestion from './Questions/UALIndicationQuestion';
-import UALPlannedQuestion from './Questions/UALPlannedQuestion';
 import WhichUALTreatmentQuestion from './Questions/WhichUALTreatmentQuestion';
-import DiganosedOrNotQuestion from './Questions/DiagnosedOrNotQuestion';
 import { TreatmentOption, TreatmentQuestion } from './types';
 import { treatmentAnswerGtagEvent } from '../../utilities/tracking/treatmentAnswer';
+import YesNoQuestion from './Question/YesNoQuestion';
+import { colchicineIntoleranceContent } from '../../content/managementQuestions/colchicineIntolerance';
+import { diagnosedOrNotContent } from '../../content/managementQuestions/diagnosedOrNot';
+import { currentFlareContent } from '../../content/managementQuestions/currentFlare';
+import { oneJointOrMoreContent } from '../../content/managementQuestions/oneJointOrMore';
+import { nsaidIntoleranceContent } from '../../content/managementQuestions/nsaidIntolerance';
+import { prednisoloneIntoleranceContent } from '../../content/managementQuestions/prednisoloneIntolerance';
+import { renalImpairmentContent } from '../../content/managementQuestions/renalImpairment';
+import { injectionPreferredContent } from '../../content/managementQuestions/injectionPreferred';
+import { onUALContent } from '../../content/managementQuestions/onUAL';
 
 type Props = {
   setTreatment: (treatment: TreatmentOption) => void;
@@ -27,114 +27,133 @@ export default function TreatmentQuestions({ setTreatment }: Props): JSX.Element
     setCurrentQuestion(question);
   };
 
+  const trackAndSetTreatment = (treatment: TreatmentOption) => (eventName: string): void => {
+    treatmentAnswerGtagEvent(eventName);
+    setTreatment(treatment);
+  };
+
   switch (currentQuestion) {
     case TreatmentQuestion.DiganosedOrNot:
       return (
-        <DiganosedOrNotQuestion
+        <YesNoQuestion
           yesHandler={trackAndSetQuestion(TreatmentQuestion.CurrentFlareOrNot)}
-          noHandler={() => setTreatment(TreatmentOption.GetDiagnosed)}
+          noHandler={trackAndSetTreatment(TreatmentOption.GetDiagnosed)}
+          content={diagnosedOrNotContent}
         />
       );
     case TreatmentQuestion.CurrentFlareOrNot:
       return (
-        <CurrentFlareQuestion
+        <YesNoQuestion
           yesHandler={trackAndSetQuestion(TreatmentQuestion.NumberOfJointsAffected)}
           noHandler={trackAndSetQuestion(TreatmentQuestion.OnUAL)}
+          content={currentFlareContent}
         />
       );
     case TreatmentQuestion.NumberOfJointsAffected:
       return (
-        <JointsAffectedQuestion
-          oneJointHandler={() => setCurrentQuestion(TreatmentQuestion.IsInjectionPreferred)}
-          multiJointHandler={() => setCurrentQuestion(TreatmentQuestion.FlareAnyRenalImpairment)}
+        <YesNoQuestion
+          yesHandler={trackAndSetQuestion(TreatmentQuestion.IsInjectionPreferred)}
+          noHandler={trackAndSetQuestion(TreatmentQuestion.FlareAnyRenalImpairment)}
+          content={oneJointOrMoreContent}
         />
       );
     case TreatmentQuestion.IsInjectionPreferred:
       return (
-        <InjectionPreferredQuestion
-          yesHandler={() => setTreatment(TreatmentOption.FlareInjection)}
-          noHandler={() => setCurrentQuestion(TreatmentQuestion.FlareAnyRenalImpairment)}
+        <YesNoQuestion
+          yesHandler={trackAndSetTreatment(TreatmentOption.FlareInjection)}
+          noHandler={trackAndSetQuestion(TreatmentQuestion.FlareAnyRenalImpairment)}
+          content={injectionPreferredContent}
         />
       );
     case TreatmentQuestion.FlareAnyRenalImpairment:
       return (
-        <RenalImpairmentQuestion
-          yesHandler={() => setCurrentQuestion(TreatmentQuestion.FlareAnyPrednisoloneIntolerance)}
-          noHandler={() => setCurrentQuestion(TreatmentQuestion.FlareAnyColchicineIntolerance)}
+        <YesNoQuestion
+          yesHandler={trackAndSetQuestion(TreatmentQuestion.FlareAnyPrednisoloneIntolerance)}
+          noHandler={trackAndSetQuestion(TreatmentQuestion.FlareAnyColchicineIntolerance)}
+          content={renalImpairmentContent}
         />
       );
     case TreatmentQuestion.FlareAnyColchicineIntolerance:
       return (
-        <ColchicineIntoleranceQuestion
-          yesHandler={() => setCurrentQuestion(TreatmentQuestion.FlareAnyNSAIDIntolerance)}
-          noHandler={() => setTreatment(TreatmentOption.FlareColchicine)}
+        <YesNoQuestion
+          yesHandler={trackAndSetQuestion(TreatmentQuestion.FlareAnyNSAIDIntolerance)}
+          noHandler={trackAndSetTreatment(TreatmentOption.FlareColchicine)}
+          content={colchicineIntoleranceContent}
         />
       );
     case TreatmentQuestion.FlareAnyNSAIDIntolerance:
       return (
-        <NSAIDIntoleranceQuestion
-          yesHandler={() => setCurrentQuestion(TreatmentQuestion.FlareAnyPrednisoloneIntolerance)}
-          noHandler={() => setTreatment(TreatmentOption.FlareNSAID)}
+        <YesNoQuestion
+          yesHandler={trackAndSetQuestion(TreatmentQuestion.FlareAnyPrednisoloneIntolerance)}
+          noHandler={trackAndSetTreatment(TreatmentOption.FlareNSAID)}
+          content={nsaidIntoleranceContent}
         />
       );
     case TreatmentQuestion.FlareAnyPrednisoloneIntolerance:
       return (
-        <PrednisoloneIntoleranceQuestion
-          yesHandler={() => setTreatment(TreatmentOption.FlareMultipleContraindication)}
-          noHandler={() => setTreatment(TreatmentOption.FlarePrednisolone)}
+        <YesNoQuestion
+          yesHandler={trackAndSetTreatment(TreatmentOption.FlareMultipleContraindication)}
+          noHandler={trackAndSetTreatment(TreatmentOption.FlarePrednisolone)}
+          content={prednisoloneIntoleranceContent}
         />
       );
     case TreatmentQuestion.OnUAL:
       return (
-        <OnUALQuestion
-          yesHandler={() => setCurrentQuestion(TreatmentQuestion.WhichUAL)}
-          noHandler={() => setCurrentQuestion(TreatmentQuestion.IsUALPlanned)}
+        <YesNoQuestion
+          yesHandler={trackAndSetQuestion(TreatmentQuestion.WhichUAL)}
+          noHandler={trackAndSetQuestion(TreatmentQuestion.IsUALPlanned)}
+          content={onUALContent}
         />
       );
     case TreatmentQuestion.WhichUAL:
       return (
-        <WhichUALTreatmentQuestion handler={() => setTreatment(TreatmentOption.UALAlreadyOn)} />
+        <WhichUALTreatmentQuestion handler={trackAndSetTreatment(TreatmentOption.UALAlreadyOn)} />
       );
     case TreatmentQuestion.IsUALPlanned:
       return (
-        <UALPlannedQuestion
-          yesHandler={() => setCurrentQuestion(TreatmentQuestion.UALAnyRenalImpairment)}
-          noHandler={() => setCurrentQuestion(TreatmentQuestion.IsUALIndicated)}
+        <YesNoQuestion
+          yesHandler={trackAndSetQuestion(TreatmentQuestion.UALAnyRenalImpairment)}
+          noHandler={trackAndSetQuestion(TreatmentQuestion.IsUALIndicated)}
+          content={onUALContent}
         />
       );
     case TreatmentQuestion.IsUALIndicated:
       return (
         <UALIndicationQuestion
-          yesHandler={() => setCurrentQuestion(TreatmentQuestion.UALAnyRenalImpairment)}
-          noHandler={() => setTreatment(TreatmentOption.UALNoIndication)}
+          yesHandler={trackAndSetQuestion(TreatmentQuestion.UALAnyRenalImpairment)}
+          noHandler={trackAndSetTreatment(TreatmentOption.UALNoIndication)}
         />
       );
     case TreatmentQuestion.UALAnyRenalImpairment:
       return (
-        <RenalImpairmentQuestion
-          yesHandler={() => setCurrentQuestion(TreatmentQuestion.UALAnyPrednisoloneIntolerance)}
-          noHandler={() => setCurrentQuestion(TreatmentQuestion.UALAnyColchicineIntolerance)}
+        <YesNoQuestion
+          yesHandler={trackAndSetQuestion(TreatmentQuestion.UALAnyPrednisoloneIntolerance)}
+          noHandler={trackAndSetQuestion(TreatmentQuestion.UALAnyColchicineIntolerance)}
+          content={renalImpairmentContent}
         />
       );
     case TreatmentQuestion.UALAnyColchicineIntolerance:
       return (
-        <ColchicineIntoleranceQuestion
-          yesHandler={() => setCurrentQuestion(TreatmentQuestion.UALAnyNSAIDIntolerance)}
-          noHandler={() => setTreatment(TreatmentOption.UALStartColchicine)}
+        <YesNoQuestion
+          yesHandler={trackAndSetQuestion(TreatmentQuestion.UALAnyNSAIDIntolerance)}
+          noHandler={trackAndSetTreatment(TreatmentOption.UALStartColchicine)}
+          content={colchicineIntoleranceContent}
         />
       );
     case TreatmentQuestion.UALAnyNSAIDIntolerance:
       return (
-        <NSAIDIntoleranceQuestion
-          yesHandler={() => setCurrentQuestion(TreatmentQuestion.UALAnyPrednisoloneIntolerance)}
-          noHandler={() => setTreatment(TreatmentOption.UALStartNSAID)}
+        <YesNoQuestion
+          yesHandler={trackAndSetQuestion(TreatmentQuestion.UALAnyPrednisoloneIntolerance)}
+          noHandler={trackAndSetTreatment(TreatmentOption.UALStartNSAID)}
+          content={nsaidIntoleranceContent}
         />
       );
     case TreatmentQuestion.UALAnyPrednisoloneIntolerance:
       return (
-        <PrednisoloneIntoleranceQuestion
-          yesHandler={() => setTreatment(TreatmentOption.UALStartMultipleContraindication)}
-          noHandler={() => setTreatment(TreatmentOption.UALStartPrednisolone)}
+        <YesNoQuestion
+          yesHandler={trackAndSetTreatment(TreatmentOption.UALStartMultipleContraindication)}
+          noHandler={trackAndSetTreatment(TreatmentOption.UALStartPrednisolone)}
+          content={prednisoloneIntoleranceContent}
         />
       );
     default:
