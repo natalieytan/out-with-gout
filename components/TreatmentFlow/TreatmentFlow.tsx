@@ -8,6 +8,8 @@ export default function TreatmentFlow(): JSX.Element {
   const [treatment, setTreatment] = React.useState(TreatmentOption.Undecided);
 
   switch (treatment) {
+    case TreatmentOption.GetDiagnosed:
+      return <>Go get Diagnosed</>;
     case TreatmentOption.FlarePrednisolone:
       return <>Prednisolone</>;
     case TreatmentOption.FlareColchicine:

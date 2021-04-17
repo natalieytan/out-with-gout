@@ -18,11 +18,8 @@ export default function LandingHero(): JSX.Element {
           Here is some information to help.
         </Typography>
         <ButtonWrapper>
-          <Button variant="contained" color="secondary" size="large" href="#">
-            I want to diagnose gout
-          </Button>
           <Button variant="contained" color="secondary" size="large" href={TREATMENT_PATH}>
-            I want to treat gout
+            I want to manage my gout
           </Button>
         </ButtonWrapper>
       </ContentWrapper>
