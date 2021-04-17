@@ -6,6 +6,7 @@ const StyledHeading = withTheme(styled.div`
   padding: 1rem;
   background: ${(props) => props.theme.palette.secondary.dark};
   color: ${(props) => props.theme.palette.secondary.contrastText};
+  min-height: 130px;
 
   ${(props) => props.theme.breakpoints.up('md')} {
     padding: 1.5rem;
@@ -15,9 +16,10 @@ const StyledHeading = withTheme(styled.div`
 type Props = {
   title: string;
   subtitle?: string;
+  caption?: string;
 };
 
-export default function HeaderContrast({ title, subtitle }: Props): JSX.Element {
+export default function HeaderContrast({ title, subtitle, caption }: Props): JSX.Element {
   return (
     <StyledHeading>
       <Typography variant="h4" color="textPrimary" align="left">
@@ -25,6 +27,9 @@ export default function HeaderContrast({ title, subtitle }: Props): JSX.Element 
       </Typography>
       <Typography variant="subtitle1" color="textPrimary" align="left">
         {subtitle ?? ''}
+      </Typography>
+      <Typography variant="caption" color="textPrimary" align="left">
+        {caption ?? ''}
       </Typography>
     </StyledHeading>
   );
