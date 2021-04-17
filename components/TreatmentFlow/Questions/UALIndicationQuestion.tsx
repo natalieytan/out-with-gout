@@ -7,10 +7,11 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 
 import Question from '../../../componentsTemplated/Question/Question';
 import AnswerBox from '../../../componentsTemplated/AnswerBox/AnswerBox';
+import { UAL_INDICATED_NO, UAL_INDICATED_YES } from '../../../constants/tracking/treatmentAnswer';
 
 type Props = {
-  yesHandler: () => void;
-  noHandler: () => void;
+  yesHandler: (eventName: string) => void;
+  noHandler: (eventName: string) => void;
 };
 
 export default function UALIndicationQuestion({ yesHandler, noHandler }: Props): JSX.Element {
@@ -27,9 +28,9 @@ export default function UALIndicationQuestion({ yesHandler, noHandler }: Props):
 
   const nextHandler = () => {
     if (Object.values(indicationsState).includes(true)) {
-      yesHandler();
+      yesHandler(UAL_INDICATED_YES);
     } else {
-      noHandler();
+      noHandler(UAL_INDICATED_NO);
     }
   };
 
@@ -42,55 +43,57 @@ export default function UALIndicationQuestion({ yesHandler, noHandler }: Props):
 
   return (
     <Question title="Do you have any of the following?">
-      <FormControl component="fieldset">
-        <FormGroup>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={indicationsState.flare}
-                onChange={handleChange}
-                name="flare"
-                color="primary"
-              />
-            }
-            label="More than 1 flare of gout within 12 months"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={indicationsState.tophi}
-                onChange={handleChange}
-                name="tophi"
-                color="primary"
-              />
-            }
-            label="Gouty tophi (uric acid deposits in your soft tissue) "
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={indicationsState.imaging}
-                onChange={handleChange}
-                name="imaging"
-                color="primary"
-              />
-            }
-            label="Joint damage due to gout on x-ray or other imaging"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={indicationsState.ckd}
-                onChange={handleChange}
-                name="ckd"
-                color="primary"
-              />
-            }
-            label="Chronic Kidney Disease"
-          />
-          <FormHelperText>Leave blank if none of the above apply</FormHelperText>
-        </FormGroup>
-      </FormControl>
+      <div>
+        <FormControl component="fieldset">
+          <FormGroup>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={indicationsState.flare}
+                  onChange={handleChange}
+                  name="flare"
+                  color="primary"
+                />
+              }
+              label="More than 1 flare of gout within 12 months"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={indicationsState.tophi}
+                  onChange={handleChange}
+                  name="tophi"
+                  color="primary"
+                />
+              }
+              label="Gouty tophi (uric acid deposits in your soft tissue) "
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={indicationsState.imaging}
+                  onChange={handleChange}
+                  name="imaging"
+                  color="primary"
+                />
+              }
+              label="Joint damage due to gout on x-ray or other imaging"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={indicationsState.ckd}
+                  onChange={handleChange}
+                  name="ckd"
+                  color="primary"
+                />
+              }
+              label="Chronic Kidney Disease"
+            />
+            <FormHelperText>Leave blank if none of the above apply</FormHelperText>
+          </FormGroup>
+        </FormControl>
+      </div>
       <AnswerBox answers={answers} />
     </Question>
   );
