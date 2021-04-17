@@ -2,9 +2,10 @@ import { Typography } from '@material-ui/core';
 
 import Question from '../../../componentsTemplated/Question/Question';
 import AnswerBox from '../../../componentsTemplated/AnswerBox/AnswerBox';
+import { DIAGNOSED_YES } from '../../../constants/tracking/treatmentAnswer';
 
 type Props = {
-  yesHandler: () => void;
+  yesHandler: (eventName: string) => void;
   noHandler: () => void;
 };
 
@@ -12,7 +13,7 @@ export default function DiganosedOrNotQuestion({ yesHandler, noHandler }: Props)
   const answers = [
     {
       text: 'Yes',
-      handler: yesHandler
+      handler: () => yesHandler(DIAGNOSED_YES)
     },
     {
       text: 'No',

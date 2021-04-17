@@ -23,8 +23,13 @@ export default function JointsAffectedQuestion({
     }
   ];
   return (
-    <Question title="Have you had a previous intolerance to colchicine (Colgout or Lengout)?">
-      <Typography variant="body1">Check with your doctor if you are not sure.</Typography>
+    <Question title="How many joints are affected?">
+      <div>
+        <Typography variant="body1">
+          If you are not sure of any questions, it can be helpful to go through the questions with
+          your doctor or health professional.
+        </Typography>
+      </div>
       <AnswerBox answers={answers} />
     </Question>
   );
