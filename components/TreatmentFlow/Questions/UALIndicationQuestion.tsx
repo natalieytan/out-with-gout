@@ -86,7 +86,7 @@ export default function UALIndicationQuestion({ yesHandler, noHandler }: Props):
                 color="primary"
               />
             }
-            label="Joint damage due to gout on x-ray or other imaging"
+            label="Chronic Kidney Disease"
           />
           <FormHelperText>Leave blank if none of the above apply</FormHelperText>
         </FormGroup>
