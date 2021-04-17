@@ -14,6 +14,7 @@ import { prednisoloneIntoleranceContent } from '../../content/managementQuestion
 import { renalImpairmentContent } from '../../content/managementQuestions/renalImpairment';
 import { injectionPreferredContent } from '../../content/managementQuestions/injectionPreferred';
 import { onUALContent } from '../../content/managementQuestions/onUAL';
+import { isUALPlannedContent } from '../../content/managementQuestions/isUALPlanned';
 
 type Props = {
   setTreatment: (treatment: TreatmentOption) => void;
@@ -114,7 +115,7 @@ export default function TreatmentQuestions({ setTreatment }: Props): JSX.Element
         <YesNoQuestion
           yesHandler={trackAndSetQuestion(TreatmentQuestion.UALAnyRenalImpairment)}
           noHandler={trackAndSetQuestion(TreatmentQuestion.IsUALIndicated)}
-          content={onUALContent}
+          content={isUALPlannedContent}
         />
       );
     case TreatmentQuestion.IsUALIndicated:

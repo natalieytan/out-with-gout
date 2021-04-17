@@ -1,6 +1,6 @@
 import { ON_UAL_NO, ON_UAL_YES } from '../../constants/tracking/treatmentAnswer';
 
-export const onUALContent = {
+export const isUALPlannedContent = {
   title: 'Has your doctor planned to start you on gout prevention medication?',
   body: (
     <>
